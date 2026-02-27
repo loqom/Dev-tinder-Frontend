@@ -6,41 +6,79 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-    const navigate=useNavigate();
-    const [email,setEmailId] =useState("Prakhar@gmail.com");
-    const [password,setPassword] =useState("Prakhar@124");
-    const [error,setError]=useState("");
-    const dispatch=useDispatch();
-    const handlSignIn=async()=>{
-        
-        try{
-            const res=await axios.post(BASE_URL+"/login",{
+    const navigate = useNavigate();
+    const [email, setEmailId] = useState("");
+    const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [error, setError] = useState("");
+    const dispatch = useDispatch();
+    const [isLoginForm, setIsLoginForm] = useState(true);
+
+    const handleSignIn = async () => {
+
+        try {
+            const res = await axios.post(BASE_URL + "/login", {
                 email,
                 password,
             },
-            {withCredentials:true}
+                { withCredentials: true }
             );
             dispatch(addUser(res.data));
-            return navigate("/");            
+            return navigate("/");
         }
-        catch(err){
+        catch (err) {
             setError(err?.response?.data || "something went wrong");
             console.error(err);
         }
     };
+
+    const handleSignUp = async () => {
+        try {
+            const res = await axios.post(
+                BASE_URL + "/signup",
+                { firstName, lastName, email, password },
+                { withCredentials: true }
+            );
+            dispatch(addUser(res.data.data));
+            return navigate("/profile");
+        } catch (err) {
+            setError(err?.response?.data || "Something went wrong");
+        }
+    };
+
     return (
-        <div className="flex justify-center my-40">
+        <div className="flex justify-center my-10">
 
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-96 border p-8">
-                <legend className="fieldset-legend text-lg">Login</legend>
+                <legend className="fieldset-legend text-lg">{isLoginForm ? "Login" : "Sign Up"}</legend>
+
+                {!isLoginForm && (
+                    <>
+                        <label className="label">First Name</label>
+                        <input type="firstName" value={firstName} className="input input-bordered w-full" onChange={(e) => setFirstName(e.target.value)} />
+
+                        <label className="label">Last Name</label>
+                        <input type="lastName" value={lastName} className="input input-bordered w-full" onChange={(e) => setLastName(e.target.value)} />
+
+                    </>)}
 
                 <label className="label">Email</label>
-                <input type="email" value={email} className="input input-bordered w-full" onChange={(e)=>setEmailId(e.target.value)} />
+                <input type="email" value={email} className="input input-bordered w-full" onChange={(e) => setEmailId(e.target.value)} />
 
                 <label className="label mt-2">Password</label>
-                <input type="password" value={password} className="input input-bordered w-full" onChange={(e)=>setPassword(e.target.value)} />
+                <input value={password} className="input input-bordered w-full" onChange={(e) => setPassword(e.target.value)} />
                 <p className="text-red-500">{error}</p>
-                <button className="btn btn-neutral btn-lg mt-4 w-full" onClick={handlSignIn}>Login</button>
+                <button className="btn btn-neutral btn-lg mt-4 w-full" onClick={isLoginForm ? handleSignIn : handleSignUp}>{isLoginForm ? "Login" : "Sign Up"}</button>
+                <p
+                    className="m-auto cursor-pointer py-2"
+                    onClick={() => setIsLoginForm((value) => !value)}
+                >
+                    {isLoginForm
+                        ? "New User? Signup Here"
+                        : "Existing User? Login Here"}
+                </p>
+
             </fieldset>
 
 

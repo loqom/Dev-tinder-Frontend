@@ -6,8 +6,8 @@ import axios from "axios";
 import UserCard from "./UserCard";
 
 const Feed = () => {
-  const dispatch=useDispatch();
   const feed=useSelector((store)=>store.feed);
+  const dispatch=useDispatch();
 
   const getFeed=async()=>{
     if (feed) return;
@@ -15,25 +15,23 @@ const Feed = () => {
       const res=await axios.get(BASE_URL+ "/user/feed",{withCredentials:true});
       dispatch(addFeed(res.data));
     }catch(err){
-      if (err.response?.status === 401) {
-      window.location.href = "/login"; 
-    }
-    console.error(err);
-    }  
+      console.log(err);
+    };
 
    };
    useEffect(()=>{
     getFeed();
    },[]);
+   if(!feed) return;
 
+   if(feed.length<=0) return <h1 className="flex justify-center my-10">No New Users Found</h1>
 
   return (
-    feed && <div className="flex justify-center my-10">
-      <UserCard user={feed[0]}/>
-    </div>
-    
-  )
+    feed && (
+        <div className="flex justify-center my-10">
+          <UserCard user={feed[0]}/>
+        </div>
+    )
+  );
 };
-
-
 export default Feed;
