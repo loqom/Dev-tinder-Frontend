@@ -36,10 +36,21 @@ application.
 
 ## Folder Structure
 
-src/ ├── components/ │ ├── Feed.jsx │ ├── Profile.jsx │ ├── Login.jsx │
-├── Connections.jsx │ ├── Requests.jsx │ └── UserCard.jsx │ ├── utils/ │
-├── appStore.js │ ├── userSlice.js │ ├── feedSlice.js │ ├──
-requestsSlice.js │ └── connectionSlice.js
+src/
+├── components/
+│ ├── Feed.jsx
+│ ├── Profile.jsx
+│ ├── Login.jsx
+│ ├── Connections.jsx
+│ ├── Requests.jsx
+│ └── UserCard.jsx
+│
+├── utils/
+│ ├── appStore.js
+│ ├── userSlice.js
+│ ├── feedSlice.js
+│ ├── requestsSlice.js
+│ └── connectionSlice.js
 
 Redux Toolkit is used for global state management including user data,
 feed, requests, and connections.
