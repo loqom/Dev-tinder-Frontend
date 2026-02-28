@@ -1,16 +1,86 @@
-# React + Vite
+# DevTinder Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DevTinder is a developer networking platform inspired by modern matching
+applications, where developers can discover each other, send connection
+requests, and build professional connections.
 
-Currently, two official plugins are available:
+This repository contains the React frontend of the DevTinder
+application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+------------------------------------------------------------------------
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   React.js (Vite)
+-   Redux Toolkit
+-   React Router DOM
+-   Tailwind CSS
+-   Axios
+-   JWT Authentication
+-   REST API Integration
 
-## Expanding the ESLint configuration
+------------------------------------------------------------------------
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+-   User Authentication (Login / Signup)
+-   Protected Routes
+-   Developer Feed
+-   Send Connection Requests
+-   Accept / Reject Requests
+-   View Connections
+-   Edit Profile
+-   Responsive Modern UI
+
+------------------------------------------------------------------------
+
+## Folder Structure
+
+src/ ├── components/ │ ├── Feed.jsx │ ├── Profile.jsx │ ├── Login.jsx │
+├── Connections.jsx │ ├── Requests.jsx │ └── UserCard.jsx │ ├── utils/ │
+├── appStore.js │ ├── userSlice.js │ ├── feedSlice.js │ ├──
+requestsSlice.js │ └── connectionSlice.js
+
+Redux Toolkit is used for global state management including user data,
+feed, requests, and connections.
+
+------------------------------------------------------------------------
+
+## Setup Instructions
+
+1.  Clone the repository
+
+git clone https://github.com/your-username/devtinder-frontend.git cd
+devtinder-frontend
+
+2.  Install dependencies
+
+npm install
+
+3.  Run development server
+
+npm run dev
+
+App runs on: http://localhost:5173
+
+------------------------------------------------------------------------
+
+## What I Learned
+
+-   Managing global state using Redux Toolkit
+-   Building scalable React folder structures
+-   Handling authentication flows
+-   API integration using Axios
+-   Protected routing in React applications
+
+------------------------------------------------------------------------
+
+## Future Improvements
+
+-   Real-time chat
+-   Notification system
+-   Skill-based matching algorithm
+
+------------------------------------------------------------------------
+
+Author: Om Vishwakarma
